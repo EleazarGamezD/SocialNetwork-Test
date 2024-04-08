@@ -1,0 +1,7 @@
+/.env
+/node_modules
+.vercel
+uploads/videos/**
+uploads/images/**
+
+!.gitkeep

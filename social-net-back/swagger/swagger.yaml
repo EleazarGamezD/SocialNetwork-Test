@@ -1,0 +1,166 @@
+openapi: 3.0.0
+tags:
+  - name: Authentication
+    description: Authentication API
+  - name: Users
+    description: Users can interact with the API
+  - name: Videos
+    description: Endpoints related to videos
+  - name: Images
+    description: Endpoints related to images
+  - name: Seed
+    description:  Application Seed
+info:
+  title: Social Network API
+  description: Backend de una red social donde puedes interactuar con imágenes, videos y usuarios.
+  version: 1.0.0
+  license:
+    name: MIT
+    url: http://localhost:3000
+servers:
+  - url: https://test-video-uploader-back.vercel.app
+    description: Development serve
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token authentication
+security:
+  - bearerAuth: []
+paths:
+  /user/login:
+    post:
+      summary: Return logged User and Bearer Token.
+      description: Return logged User and Bearer Token.
+      operationId: loginUser
+      tags: 
+        -  Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: seeduser@admin.com
+                password:
+                  type: string
+                  example: SeedPass1234%%
+      responses:
+        '200':
+          description: A JSON whit the User and Bearer Token.
+          content:
+            application/json:
+             schema:
+              type: object
+              properties:
+               user:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: "6600b9586f5c607c65715221"
+                      email:
+                        type: string
+                        example: "seeduser@admin.com"
+                      userName:
+                        type: string
+                        example: "seeduser"
+               token:
+                    type: string
+                    example: Bearer Token
+        '400':
+          description: Error in User Login.
+  /video/getallvideos:
+    get:
+      summary: Returns a list of videos.
+      description: Retrieves a list of videos.
+      operationId: getAllVideos
+      tags: 
+        - Videos
+      responses:
+        '200':
+          description: A JSON array of video objects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    videoId:
+                      type: string
+                    title:
+                      type: string
+                    description:
+                      type: string
+        '400':
+          description: Error get videos.
+  /video/uploadVideo:
+    post:
+      summary: Uploads a video.
+      operationId: UploadVideo
+      description: Uploads a video with a title and description.
+      tags: 
+        -  Videos
+      security:
+        -  bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                video:
+                  type: string
+                  format: binary
+                title:
+                  type: string
+                description:
+                  type: string
+      responses:
+        '200':
+          description: Video uploaded successfully.,
+        '400':
+          description: Error in Video Upload checks logs
+  /images:
+    get:
+      summary: Returns a list of images.
+      description: Retrieves a list of images.
+      operationId: getAllImages
+      responses:
+        '200':
+          description: A JSON array of image objects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    imageId:
+                      type: string
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    imageUrl:
+                      type: string
+                    userId:
+                      type: string
+        '400':
+          description: Error get images.
+      parameters:
+        - name: userId
+          in: query
+          description: Filter images by user ID.
+          required: false
+          schema:
+            type: string
+        

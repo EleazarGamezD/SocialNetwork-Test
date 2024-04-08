@@ -1,0 +1,68 @@
+@import './base.css';
+
+#app {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 2rem;
+  height: 100vh;
+}
+
+
+a,
+.grey {
+  text-decoration: none;
+  color: rgb(73, 75, 74);
+  transition: 0.4s;
+  padding: 3px;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 3%, 54%, 0.2);
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
+  #app {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 2fr auto;
+    grid-template-rows: auto 1fr;
+    padding: 0 2rem;
+    gap: 1rem;
+  }
+
+  .navbar {
+    grid-row: 1 / 2;
+    grid-column: 2 / 4;
+
+  }
+
+  .logo {
+    grid-row: 1/-2;
+    grid-column: 1 / 2;
+  }
+
+  .sidebar-left {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+  }
+
+  .sidebar-right {
+    grid-row: -2 / -1;
+    grid-column: 3 / 4;
+  }
+
+  .content {
+    grid-row: 2 / -1;
+    grid-column: 2/ 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
