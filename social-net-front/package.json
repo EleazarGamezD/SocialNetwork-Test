@@ -9,10 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@videojs-player/vue": "^1.0.0",
     "@vueuse/core": "^10.9.0",
     "axios": "^1.6.8",
     "dotenv": "^16.4.5",
     "primevue": "^3.51.0",
+    "video.js": "^8.10.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },

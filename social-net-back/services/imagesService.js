@@ -99,9 +99,14 @@ const imagesService = {
   },
 
   getAllImages: async (req, res) => {
+    // Obtener los parámetros de consulta
+    const { limit, offset } = req.query;
+    const parsedLimit = limit ? parseInt(limit) : 4;
+    const parsedOffset = offset ? parseInt(offset) : 0;
+
     try {
       // Obtener todas las imágenes
-      const images = await Image.find();
+      const images = await Image.find().limit(parsedLimit).skip(parsedOffset);
 
       // Decodificar todas las imágenes
       const decodedImages = await Promise.all(

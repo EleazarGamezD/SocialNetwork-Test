@@ -19,7 +19,26 @@ const router = createRouter({
       name: 'register',
       component: () => import('../views/RegisterView.vue')
     },
-   
+  {
+      path: '/photosGallery',
+      name: 'photosGallery',
+      component: () => import('../views/PhotosGalleryView.vue')
+    },
+    {
+      path: '/videosGallery',
+      name: 'videosGallery',
+      component: () => import('../views/VideoGalleryView.vue')
+    },
+    {
+      path: '/uploadPhoto',
+      name: 'uploadPhoto',
+      component: () => import('@/components/PhotoUpload.vue')
+    },
+     {
+      path: '/uploadVideo',
+      name: 'uploadVideo',
+      component: () => import('@/components/VideoUpload.vue')
+    },
   ]
 })
 

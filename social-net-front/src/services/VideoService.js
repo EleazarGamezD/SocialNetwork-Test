@@ -3,24 +3,19 @@ import { ref } from "vue";
 export class VideoService {
   baseUrl = "http://localhost:3000";
   allVideoData;
-
+  page = 0;
   constructor() {
     this.allVideoData = ref([]);
   }
-  getVideos() {
-    return this.allVideoData;
-  }
-  async getAllVideos() {
-    try {
-      const response = await axios.get(`${this.baseUrl}/video/getallvideos`);
-      this.allVideoData.value = response.data;
-      console.log(this.allVideoData.value);
-      return response.data;
-    } catch (error) {
-      console.log(error);
 
-      throw error;
-    }
+  async getAllVideos(page) {
+    return await axios.get(
+      `${this.baseUrl}/video/getallvideos` + `?limit=3&offset=${page}`
+    );
+  }
+
+  async getVideoById(videoId) {
+    return await axios.get(`${this.baseUrl}/video/streamVideo/${videoId}`);
   }
 }
 export default VideoService;

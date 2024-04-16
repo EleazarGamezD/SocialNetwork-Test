@@ -170,7 +170,10 @@ const videoService = {
    * @return {Array<Video>} - A promise that resolves when the videos are retrieved and sent.
    */
   getAllVideos: async (req, res) => {
-    const videos = await Video.find();
+    const { limit, offset } = req.query;
+    const parsedLimit = limit ? parseInt(limit) : 4;
+    const parsedOffset = offset ? parseInt(offset) : 0;
+    const videos = await Video.find().limit(parsedLimit).skip(parsedOffset);
     const cleanResponse = videos.map(video => {
       return {
         id: video._id,
@@ -206,7 +209,6 @@ const videoService = {
    */
   deleteVideo: async (req, res) => {
     const videoId = req.params.id; // se pasa el ID del video como parámetro en la URL
-
     try {
       // Eliminar el archivo de vídeo del almacenamiento
       const video = await Video.findById(videoId);

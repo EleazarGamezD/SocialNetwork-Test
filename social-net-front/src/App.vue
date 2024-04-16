@@ -84,25 +84,19 @@ function closeDropdown(event) {
     <!-- navigation -->
     <nav class="nav">
       <div class="navigation-card sidenav" v-if="isLoggedUser">
-        <a v-ripple
-          class="tab p-ripple flex select-none justify-content-center align-items-center border-round p-6 font-bold"
-          @click="toggleDropdown" title="Menu">
+        <a @click="toggleDropdown" class="tab">
           <IconMenuDots />
           <span class="tooltip">Menu</span>
         </a>
         <div class="dropdown-content" :class="{ 'show': isDropdownOpen }">
-          <RouterLink v-ripple
-            class="p-ripple flex select-none justify-content-center align-items-center border-round p-6 font-bold"
-            style="border-radius: 50%;" to="/">
+          <RouterLink style="border-radius: 50%;" to="/videosGallery">
             <a class="tab">
               <IconAddVideo />
               <span class="tooltip" id="menu">Tus Videos</span>
             </a>
           </RouterLink>
 
-          <RouterLink v-ripple
-            class="p-ripple flex select-none justify-content-center align-items-center border-round p-6 font-bold"
-            style="border-radius: 50%;" to="/login">
+          <RouterLink style="border-radius: 50%;" to="/photosGallery">
             <a class="tab">
               <IconAddPhoto />
               <span class="tooltip" id="menu">Tus Fotos</span>
@@ -128,167 +122,167 @@ function closeDropdown(event) {
 </template>
 
 <style scoped>
-@media (min-width: 1024px) {
-  .logo {
-    max-width: 120px;
-  }
+.logo {
+  max-width: 120px;
+}
 
-  .spacer {
-    flex: 1 1 auto;
-  }
+.spacer {
+  flex: 1 1 auto;
+}
 
-  .sidebar-left {
-    width: 90px;
-    margin-left: 15px;
-  }
+.sidebar-left {
+  width: 90px;
+  margin-left: 15px;
+}
 
-  .sidebar-right {
+.sidebar-right {
+  width: 90px;
+}
 
-    width: 90px;
+.nav {
+  display: flex;
+  justify-content: center;
+  border-radius: 60px;
+  width: 90px;
 
-  }
+}
 
-  .nav {
-    display: flex;
-    justify-content: center;
+.navigation-card {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 15px 20px;
+  border-radius: 50px;
+}
 
-    border-radius: 60px;
-    width: 90px;
+.navigation-card.sidenav {
+  writing-mode: vertical-lr;
+  max-width: 120px;
+}
 
-  }
+.user-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: 50px;
+  overflow: hidden;
+  padding: 15px;
+  border-radius: 5%;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+}
 
-  .navigation-card {
-    width: fit-content;
-    height: fit-content;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    padding: 15px 20px;
-    border-radius: 50px;
-  }
-
-  .navigation-card.sidenav {
-    writing-mode: vertical-lr;
-    max-width: 120px;
-  }
-
-  .user-menu {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: auto;
-    height: 50px;
-    overflow: hidden;
-    padding: 15px;
-    border-radius: 5%;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.3s;
-  }
-
-  /* icons */
-  .tab {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    overflow: hidden;
-    padding: 15px;
-    border-radius: 50%;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.3s;
-  }
-
-  .tab:hover {
-    background-color: rgb(233, 87, 87);
-  }
+/* icons */
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  padding: 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+}
 
 
-  .navbar {
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+.tab:hover {
+  background-color: rgb(233, 87, 87);
+  visibility: visible;
+  opacity: 1;
+}
+
+.navbar {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* dark light mode  */
+.switch {
+  width: 120px;
+  position: absolute;
+  justify-content: center;
+  bottom: 50px;
+  margin-bottom: 20px;
+}
+
+.container {
+  --color: #a5a5b0;
+  --size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  font-size: var(--size);
+  fill: var(--color);
+  user-select: none;
+}
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+
+}
+
+/* menu dropdown */
+.dropdown-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  max-width: 70px;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+}
+
+.dropdown-content.tab {
+  cursor: crosshair;
+}
+
+.show {
+  opacity: 1;
+  background-color: #a5a5b0;
+  border-radius: 50px;
+  transition: opacity 0.5s ease;
+}
 
 
-  /* dark light mode  */
-  .switch {
-    width: 120px;
-    position: absolute;
-    justify-content: center;
-    bottom: 50px;
-    margin-bottom: 20px;
-  }
+/* tootips */
+.tooltip {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  visibility: hidden;
+  opacity: 0;
+  margin-left: 100px;
+  transition: opacity 0.3s ease;
+  rotate: -90deg;
+  text-align: center;
+}
 
-  .container {
-    --color: #a5a5b0;
-    --size: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    cursor: pointer;
-    font-size: var(--size);
-    fill: var(--color);
-    user-select: none;
-  }
+.tab:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
 
-  .container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
+#menu {
+  margin-left: 160px;
 
-  }
-
-  /* menu dropdown */
-  .dropdown-content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    max-width: 70px;
-    transition: opacity 0.5s ease;
-    opacity: 0;
-  }
-
-  .show {
-    opacity: 1;
-    background-color: #a5a5b0;
-    border-radius: 50px;
-    transition: opacity 0.5s ease;
-  }
-
-
-  /* tootips */
-  .tooltip {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.75);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    visibility: hidden;
-    opacity: 0;
-    margin-left: 100px;
-    transition: opacity 0.3s ease;
-    rotate: -90deg;
-    text-align: center;
-  }
-
-  #menu {
-    margin-left: 160px;
-
-  }
-
-  .tab:hover .tooltip {
-    visibility: visible;
-    opacity: 1;
-  }
 }
 </style>

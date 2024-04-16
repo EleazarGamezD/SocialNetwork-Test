@@ -16,12 +16,10 @@ export class AuthService {
   }
 
   async register(registerForm) {
-    /*   console.log(api_url); */
-    await axios.post(`${this.baseUrl}/user/register`, registerForm);
+    return await axios.post(`${this.baseUrl}/user/register`, registerForm);
   }
 
   async login(loginForm) {
-    console.log(loginForm);
     return await axios.post(`${this.baseUrl}/user/login`, loginForm);
   }
 }
