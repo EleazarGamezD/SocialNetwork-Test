@@ -30,15 +30,9 @@ const router = createRouter({
       component: () => import('../views/VideoGalleryView.vue')
     },
     {
-      path: '/uploadPhoto',
-      name: 'uploadPhoto',
-      component: () => import('@/components/PhotoUpload.vue')
-    },
-     {
-      path: '/uploadVideo',
-      name: 'uploadVideo',
-      component: () => import('@/components/VideoUpload.vue')
-    },
+      path: '/uploadMedia',
+      name: 'uploadMedia',
+      component: () => import('../components/UploadMedia.vue')}
   ]
 })
 

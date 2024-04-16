@@ -56,7 +56,6 @@ function closeDropdown(event) {
   <img alt="logo" class="logo" src="@/assets/Logo.png" width="120" height="120" />
   <div class="navbar">
     <ToolbarView />
-
   </div>
 
   <div class="sidebar-right">
